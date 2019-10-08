@@ -1,9 +1,11 @@
 import React from 'react';
-import './Home.css';
+import HomepageOverlay from './homepage-overlay/Homepage-overlay'
+import './Home.scss';
 
-function Home() {
+const Home = () => {
   return (
       <div>
+          <HomepageOverlay />
       </div>
   );
 }
