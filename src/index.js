@@ -3,7 +3,10 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
+import HomepageOverlay from './home/homepage-overlay/Homepage-overlay';
 
+
+ReactDOM.render(<HomepageOverlay />,document.getElementById('overlay'));
 ReactDOM.render(<App />, document.getElementById('root'));
 
 // If you want your app to work offline and load faster, you can change
