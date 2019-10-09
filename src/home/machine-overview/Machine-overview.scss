@@ -1,0 +1,50 @@
+@import '../../../public/styles/variables/all';
+
+.machine-overview{
+    display: flex;
+    flex-flow: row wrap;  //switch line automatically
+    justify-content: flex-start;
+
+    .machine-overview{
+         > .machine-container{
+            flex-basis: $single-column-layout-min-width;
+            margin: 20px 10px;
+         }
+    }
+}
+
+// for PC web browser
+@media screen and (min-width: $pc-web-small-min){
+    .machine-overview{
+        > .machine-container{
+           flex-basis: 22%;
+           margin: 40px 1.5%;
+        }
+    }
+}
+
+// for tablets (ipad/ipad Pro etc.)
+@media only screen and (min-device-width: $tablet-device-min) and (max-device-width: $tablet-device-max) and (orientation: portrait){
+    .machine-overview{
+        > .machine-container{
+           flex-basis: 23%;
+           margin: 20px 1%;
+        }
+    }
+}
+
+@media only screen and (min-device-width: $tablet-device-min) and (max-device-width: $tablet-device-max) and (orientation: landscape){
+    .machine-overview{
+        > .machine-container{
+           flex-basis: 23%;
+           margin: 20px 1%;
+        }
+    }
+}
+
+
+// for other exceptions
+// @media screen and (max-width: $single-column-layout-min-width){
+    
+// }
+
