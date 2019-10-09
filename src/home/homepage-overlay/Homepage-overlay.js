@@ -3,19 +3,19 @@ import './Homepage-overlay.scss';
 
 const HomepageOverlay = () => {
    return (
-    <div class="header">
-        <div class="header-sub">
+    <div className="header">
+        <div className="header-sub">
             <img id="truconnect_logo" src="/images/trumpf_logo.JPG" alt="" />
         </div>
-        <div class="header-sub2">
+        <div className="header-sub2">
             <ul>
-                <li class="language-switch">
+                <li className="language-switch">
                     <a>CN</a>|<a>EN</a>
                 </li>
-                <li class="tabs">
-                    <div class="nav-site">
-                        <div class="nav-menu">
-                            <a class="hoverBold">
+                <li className="tabs">
+                    <div className="nav-site">
+                        <div className="nav-menu">
+                            <a className="hoverBold">
                                 Machine Overview
                             </a>
                         </div>

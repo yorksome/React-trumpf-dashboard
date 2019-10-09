@@ -4,7 +4,7 @@ import SingleMachine from './single-machine-dashboard/Single-machine-dashboard';
 
 const MachineOverview = () => {
     return (
-        <div class="machine-overview">
+        <div className="machine-overview">
            <SingleMachine />
            <SingleMachine />
            <SingleMachine />
