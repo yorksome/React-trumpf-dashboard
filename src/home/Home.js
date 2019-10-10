@@ -2,12 +2,18 @@ import React from 'react';
 import './Home.scss';
 import MachineOverview from './machine-overview/Machine-overview';
 
-const Home = () => {
-  return (
+class Home extends React.Component{
+  constructor(props){
+    super(props);
+  }
+
+  render(){
+    return (
       <div>
-          <MachineOverview />
+        <MachineOverview machineList={this.props.machineList} />
       </div>
-  );
+    );
+  }
 }
 
 export default Home;
