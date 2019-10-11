@@ -14,7 +14,7 @@ class MachineOverview extends React.Component{
                 <div className="machine-overview">
                     {
                         this.props.machineList.map((item) => {
-                            return <SingleMachine info={item} key={item.Id} />
+                            return <SingleMachine info={item} key={item.MachineUuid} />
                         })
                     }
                 </div>

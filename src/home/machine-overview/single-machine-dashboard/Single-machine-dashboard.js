@@ -4,6 +4,11 @@ import './Single-machine-dashboard.scss';
 class SingleMachine extends React.Component{
     constructor(props){
         super(props);
+
+        this.state = {
+            ProgramName: null,
+            Status: 2 //offline as default
+        };
     }
 
     getImageUri = (machineId) => {
@@ -52,7 +57,7 @@ class SingleMachine extends React.Component{
                         <img src="/images/icon.JPG" alt="" />
                     </div>
                     <div className="program_name">
-                        <span>MIX1447_6</span>
+                        <span>{this.state.ProgramName}</span>
                     </div>
                     <div className="program_time">
                     </div>
