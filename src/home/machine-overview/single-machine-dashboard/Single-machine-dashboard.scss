@@ -8,26 +8,22 @@
         width: 100%;
         margin: 0;
         padding: 0;
+    }
+
+    .running{
         background-color: $color-running;
-        // &.Running{
-        //     //#BBD03A
-        //     background-color: $color-running; 
-        // }
+    }
 
-        // &.Error{
-        //     //#FF6565
-        //     background-color: $color-error;
-        // }
+    .inpause{
+        background-color: $color-inPause;
+    }
 
-        // &.Offline{
-        //     //#D0D0D0
-        //     background-color: $color-offline;
-        // }
+    .offline{
+        background-color: $color-offline;
+    }
 
-        // &.InPause{
-        //     //#FFC000
-        //     background-color: $color-inPause;
-        // }
+    .error{
+        background-color: $color-error;
     }
     
     .status-bar:hover{

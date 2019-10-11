@@ -15,9 +15,9 @@ const HomepageOverlay = () => {
                 <li className="tabs">
                     <div className="nav-site">
                         <div className="nav-menu">
-                            <a className="hoverBold">
+                            {/* <a className="hoverBold"> */}
                                 Machine Overview
-                            </a>
+                            {/* </a> */}
                         </div>
                     </div>
                 </li>

@@ -37,9 +37,19 @@ class SingleMachine extends React.Component{
     }
 
     render(){
+        const machineStatus = this.state.Status;
+        const getStatusClass = () => {
+            switch(machineStatus){
+                case 0: return `status-bar inpause`;
+                case 1: return `status-bar running`;
+                case 2: return `status-bar offline`;
+                case 3: return `status-bar error`;
+            }
+        }
+
         return (
             <div className="machine-container">
-                <div className="status-bar">
+                <div className={getStatusClass()}>
                 </div>
                 <div className="machine_info">
                     <div className="machine_name">
