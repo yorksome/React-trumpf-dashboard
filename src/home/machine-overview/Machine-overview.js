@@ -9,11 +9,22 @@ class MachineOverview extends React.Component{
     }
 
     render(){
-        return (
-            <div className="machine-overview">
-                <SingleMachine info={this.props.machineList[0]} />
-            </div>
-        );
+        if(this.props.machineList && this.props.machineList.length>0) {
+            return (
+                <div className="machine-overview">
+                    {
+                        this.props.machineList.map((item) => {
+                            return <SingleMachine info={item} key={item.Id} />
+                        })
+                    }
+                </div>
+            );
+        }
+        else {
+            console.log(`No received machines`);
+            return null;
+        }
+        
     }
 }
 
