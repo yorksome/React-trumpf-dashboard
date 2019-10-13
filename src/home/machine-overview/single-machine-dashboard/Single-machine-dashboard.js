@@ -44,6 +44,7 @@ class SingleMachine extends React.Component{
                 case 1: return `status-bar running`;
                 case 2: return `status-bar offline`;
                 case 3: return `status-bar error`;
+                default: return `status-bar`;
             }
         }
 
@@ -64,10 +65,10 @@ class SingleMachine extends React.Component{
                 </div>
                 <div className="running-status">
                     <div className="program_status_icon">
-                        <img src="/images/icon.JPG" alt="" />
+                        <img src={this.state.Status === 1? "/images/icon.JPG" : "/images/icon2.JPG"} alt="" />
                     </div>
                     <div className="program_name">
-                        <span>{this.state.ProgramName}</span>
+                        <span>{this.state.ProgramName? this.state.ProgramName : "Prog.No.: ----"}</span>
                     </div>
                     <div className="program_time">
                     </div>

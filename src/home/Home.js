@@ -3,9 +3,9 @@ import './Home.scss';
 import MachineOverview from './machine-overview/Machine-overview';
 
 class Home extends React.Component{
-  constructor(props){
-    super(props);
-  }
+  // constructor(props){
+  //   super(props);
+  // }
 
   render(){
     return (

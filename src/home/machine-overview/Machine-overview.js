@@ -4,9 +4,9 @@ import SingleMachine from './single-machine-dashboard/Single-machine-dashboard';
 
 
 class MachineOverview extends React.Component{
-    constructor(props){
-        super(props);
-    }
+    // constructor(props){
+    //     super(props);
+    // }
 
     render(){
         if(this.props.machineList && this.props.machineList.length>0) {

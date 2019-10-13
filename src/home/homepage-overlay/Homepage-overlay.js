@@ -10,14 +10,12 @@ const HomepageOverlay = () => {
         <div className="header-sub2">
             <ul>
                 <li className="language-switch">
-                    <a>CN</a>|<a>EN</a>
+                   <a href="/">CN</a>  | <a href="/">EN</a>
                 </li>
                 <li className="tabs">
                     <div className="nav-site">
                         <div className="nav-menu">
-                            {/* <a className="hoverBold"> */}
-                                Machine Overview
-                            {/* </a> */}
+                           <a href="/">Machine Overview</a> 
                         </div>
                     </div>
                 </li>
