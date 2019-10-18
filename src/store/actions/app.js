@@ -28,7 +28,7 @@ export function requestMachineList(){
          axios.get(`https://localhost:44395/dt/api/MS/GetAllMachines`)
            .then(
                response => {
-                   console.log(response);
+                   console.log(response.request.status? response.request.status : 'response unknown');
                    dispatch(requestMachineListSuccess(response.data));
                }
            ).catch(

@@ -21,7 +21,7 @@ class MachineOverview extends React.Component{
             );
         }
         else {
-            console.log(`No received machines`);
+            // console.log(`No received machines`);
             return null;
         }
         

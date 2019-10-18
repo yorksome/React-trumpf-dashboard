@@ -4,7 +4,7 @@ import './App.css';
 import getDummyMachines from './services/dummy.data';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import requestMachineList from './store/actions/app';
+import { requestMachineList } from './store/actions/app';
 
 
 class App extends React.Component{
@@ -14,7 +14,7 @@ class App extends React.Component{
     this.shouldComponentRender = this.shouldComponentRender.bind(this);
   }
 
-  componentWillMount() {
+  componentDidMount() {
     const {requestMachineList} = this.props;
     requestMachineList();
   }
@@ -45,7 +45,7 @@ class App extends React.Component{
   }
 }
 
-mapStateToProps = (state) => {
+const mapStateToProps = (state) => {
   return {
     error: state.app.error,
     machineList: state.app.machineList,
@@ -53,9 +53,9 @@ mapStateToProps = (state) => {
   }
 }
 
-mapDispatchToProps = (dispatch) => bindActionCreators({
+const mapDispatchToProps = (dispatch) => bindActionCreators({
   requestMachineList: requestMachineList
-},dispatch)
+}, dispatch)
 
 App = connect(mapStateToProps, mapDispatchToProps)(App);
 
