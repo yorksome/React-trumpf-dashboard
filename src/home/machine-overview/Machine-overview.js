@@ -13,8 +13,8 @@ class MachineOverview extends React.Component{
             return (
                 <div className="machine-overview">
                     {
-                        this.props.machineList.map((item) => {
-                            return <SingleMachine info={item} key={item.MachineUuid} />
+                        this.props.machineList.map((item,index) => {
+                            return <SingleMachine info={item} ws={this.props.wsCall[index]} key={item.MachineUuid} />
                         })
                     }
                 </div>

@@ -10,7 +10,7 @@ class Home extends React.Component{
   render(){
     return (
       <div>
-        <MachineOverview machineList={this.props.machineList} />
+        <MachineOverview machineList={this.props.machineList} wsCall={this.props.wsCall} />
       </div>
     );
   }

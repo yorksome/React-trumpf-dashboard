@@ -2,14 +2,14 @@ import React from 'react';
 import './Single-machine-dashboard.scss';
 
 class SingleMachine extends React.Component{
-    constructor(props){
-        super(props);
+    // constructor(props){
+    //     super(props);
 
-        this.state = {
-            ProgramName: null,
-            Status: 2 //offline as default
-        };
-    }
+    //     this.state = {
+    //         ProgramName: null,
+    //         Status: 2 //offline as default
+    //     };
+    // }
 
     getImageUri = (machineId) => {
       switch(machineId){
@@ -37,7 +37,7 @@ class SingleMachine extends React.Component{
     }
 
     render(){
-        const machineStatus = this.state.Status;
+        const machineStatus = this.props.ws.Status;
         const getStatusClass = () => {
             switch(machineStatus){
                 case 0: return `status-bar inpause`;
@@ -65,10 +65,10 @@ class SingleMachine extends React.Component{
                 </div>
                 <div className="running-status">
                     <div className="program_status_icon">
-                        <img src={this.state.Status === 1? "/images/icon.JPG" : "/images/icon2.JPG"} alt="" />
+                        <img src={this.props.ws.Status === 1? "/images/icon.JPG" : "/images/icon2.JPG"} alt="" />
                     </div>
                     <div className="program_name">
-                        <span>{this.state.ProgramName? this.state.ProgramName : "Prog.No.: ----"}</span>
+                        <span>{this.props.ws.ProgramName? this.props.ws.ProgramName : "Prog.No.: ----"}</span>
                     </div>
                     <div className="program_time">
                     </div>
