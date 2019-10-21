@@ -1,14 +1,14 @@
-import { REQUEST_MACHINELIST_SUCCESS, REQUEST_MACHINELIST_PENDING, REQUEST_MACHINELIST_ERROR, WEBSOCKET_OPEN, WEBSOCKET_MESSAGING, WEBSOCKET_CLOSE } from '../action-types';
+import { REQUEST_MACHINELIST_SUCCESS, REQUEST_MACHINELIST_ERROR, WEBSOCKET_OPEN, WEBSOCKET_MESSAGING, WEBSOCKET_CLOSE } from '../action-types';
 
 const initialState = {
-    pending: false,
+    success: false,
+    error: null,
     machineList: [],
     wsCall: {
         open: false,
         message: [],
         close: false
     },
-    error: null
 }
 
 function app(state = initialState, action){
@@ -16,18 +16,15 @@ function app(state = initialState, action){
         case REQUEST_MACHINELIST_SUCCESS: 
             return {
                 ...state,
+                success: true,
+                error: null,
                 machineList: action.payload
             }
         case REQUEST_MACHINELIST_ERROR:
             return {
                 ...state,
-                pending: false,
-                error: action.error
-            }
-        case REQUEST_MACHINELIST_PENDING:
-            return {
-                ...state,
-                pending: true
+                success: false,
+                error: action.error,
             }
         case WEBSOCKET_OPEN:
             return {

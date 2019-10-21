@@ -15,11 +15,11 @@ export function requestMachineListError(error){
     }
 }
 
-export function requestMachineListPending(){
-    return {
-        type: REQUEST_MACHINELIST_PENDING,
-    }
-}
+// export function requestMachineListPending(){
+//     return {
+//         type: REQUEST_MACHINELIST_PENDING,
+//     }
+// }
 
 export function openWebsocket(){
     return {
@@ -48,6 +48,41 @@ export function requestMachineList(){
                response => {
                    console.log(response.request.status? response.request.status : 'response unknown');
                    dispatch(requestMachineListSuccess(response.data));
+
+                   const ws = new WebSocket('wss://localhost:44395/dt/wscall');
+                   const machineList = response.data;
+                   ws.onopen = () => {
+                    // send machine uuids, otherwise no data back in message
+                    // relative to backend 
+                    let macUuids = [];
+                    if(machineList && machineList.length>0)
+                    {
+                        macUuids = machineList.map( mac => {
+                            return mac.MachineUuid
+                        })
+                    }
+    
+                    if(macUuids.length > 0)
+                    {
+                        ws.send(JSON.stringify(macUuids));
+                        dispatch(openWebsocket());
+                        console.log(`ws connected`);
+                    }else{
+                        dispatch(closeWebsocket());
+                        console.log(`Ws didn't received macUuids.`)
+                    }
+                   }
+
+                   ws.onmessage = (evt) => {
+                    if(evt) {
+                       dispatch(onMessageWebSocket(JSON.parse(evt.data)));
+                    }
+                   }
+     
+                    ws.onclose = (e) => {
+                        dispatch(closeWebsocket());
+                        console.log(`ws closed`);
+                    }
                }
            ).catch(
                error => {
@@ -55,49 +90,4 @@ export function requestMachineList(){
                }
            )
      }
-}
-
-export function connectWsCall(){
-     const ws = new WebSocket('wss://localhost:44395/dt/wscall');
-     if(ws.readyState === 1) {
-        return (dispatch, getState) => {
-            ws.onopen = () => {
-                // send machine uuids, otherwise no data back in message
-                let macUuids = [];
-                if(getState().machineList)
-                {
-                    macUuids = getState().machineList.map( mac => {
-                        return mac.MachineUuid
-                    })
-                }
-
-                if(macUuids.length > 0)
-                {
-                    ws.send(JSON.stringify(macUuids));
-                    dispatch(openWebsocket());
-                    console.log(`ws connected`);
-                }else{
-                    console.log(`Ws didn't received macUuids.`)
-                }
-            }
- 
-            ws.onmessage = (evt) => {
-                if(evt) {
-                   dispatch(onMessageWebSocket(JSON.parse(evt.data)));
-                }
-            }
- 
-            ws.onclose = (e) => {
-                dispatch(closeWebsocket());
-                console.log(`ws closed`);
-            }
-      }
-     } else {
-         return (dispatch) => {
-             ws.onclose = () => {
-                dispatch(closeWebsocket());
-             }
-         }
-     }
-     
 }

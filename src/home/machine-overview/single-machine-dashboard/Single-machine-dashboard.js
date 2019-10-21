@@ -66,9 +66,11 @@ class SingleMachine extends React.Component{
                 <div className="running-status">
                     <div className="program_status_icon">
                         <img src={this.props.ws.Status === 1? "/images/icon.JPG" : "/images/icon2.JPG"} alt="" />
+                        {/* <img src="/images/icon.JPG" alt="" /> */}
                     </div>
                     <div className="program_name">
                         <span>{this.props.ws.ProgramName? this.props.ws.ProgramName : "Prog.No.: ----"}</span>
+                        {/* <span>Prog.No.: ----</span> */}
                     </div>
                     <div className="program_time">
                     </div>

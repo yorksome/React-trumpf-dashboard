@@ -4,7 +4,7 @@ import './App.css';
 import getDummyMachines from './services/dummy.data';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { requestMachineList, connectWsCall } from './store/actions/app';
+import { requestMachineList } from './store/actions/app';
 
 
 class App extends React.Component{
@@ -15,20 +15,15 @@ class App extends React.Component{
   }
 
   componentDidMount() {
-    const { requestMachineList, connectWsCall} = this.props;
+    const { requestMachineList } = this.props.actions;
     requestMachineList();
-    connectWsCall();
   }
 
   shouldComponentRender() {
-    const {pending, wsCall} = this.props;
-    // if pending, do not render machines
-    if(pending || wsCall.close){
-      return false;
-    }
+    const {success, wsCall} = this.props;
+    let shouldRender = success && wsCall.open;
 
-    //else render
-    return true;
+    return shouldRender? true: false;
   }
 
   render() {
@@ -48,21 +43,23 @@ class App extends React.Component{
 
 const mapStateToProps = (state) => {
   return {
+    success: state.app.success,
     error: state.app.error,
     machineList: state.app.machineList,
     wsCall: {
       open: state.app.wsCall.open,
       message: state.app.wsCall.message,
       close: state.app.wsCall.close
-    },
-    pending: state.app.pending
+    }
   }
 }
 
-const mapDispatchToProps = (dispatch) => bindActionCreators({
-  requestMachineList: requestMachineList,
-  connectWsCall: connectWsCall
-}, dispatch)
+const mapDispatchToProps = (dispatch) => ({
+  actions: bindActionCreators({
+    requestMachineList: requestMachineList,
+    // connectWsCall: connectWsCall
+  }, dispatch)
+})
 
 App = connect(mapStateToProps, mapDispatchToProps)(App);
 
