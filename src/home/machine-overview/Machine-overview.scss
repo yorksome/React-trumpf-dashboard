@@ -1,11 +1,10 @@
 @import '../../../public/styles/variables/all';
 
 .machine-overview{
-    display: flex;
-    flex-flow: row wrap;  //switch line automatically
-    justify-content: flex-start;
-
-    .machine-overview{
+    .group{
+        display: flex;
+        flex-flow: row wrap;  //switch line automatically
+        justify-content: flex-start;
          > .machine-container{
             flex-basis: $single-column-layout-min-width;
             margin: 20px 10px;
@@ -16,9 +15,11 @@
 // for PC web browser
 @media screen and (min-width: $pc-web-small-min){
     .machine-overview{
-        > .machine-container{
-           flex-basis: 22%;
-           margin: 40px 1.5%;
+        .group{
+            > .machine-container{
+                flex-basis: 22%;
+                margin: 40px 1.5%;
+             }
         }
     }
 }

@@ -48,41 +48,7 @@ export function requestMachineList(){
                response => {
                    console.log(response.request.status? response.request.status : 'response unknown');
                    dispatch(requestMachineListSuccess(response.data));
-
-                   const ws = new WebSocket('wss://localhost:44395/dt/wscall');
-                   const machineList = response.data;
-                   ws.onopen = () => {
-                    // send machine uuids, otherwise no data back in message
-                    // relative to backend 
-                    let macUuids = [];
-                    if(machineList && machineList.length>0)
-                    {
-                        macUuids = machineList.map( mac => {
-                            return mac.MachineUuid
-                        })
-                    }
-    
-                    if(macUuids.length > 0)
-                    {
-                        ws.send(JSON.stringify(macUuids));
-                        dispatch(openWebsocket());
-                        console.log(`ws connected`);
-                    }else{
-                        dispatch(closeWebsocket());
-                        console.log(`Ws didn't received macUuids.`)
-                    }
-                   }
-
-                   ws.onmessage = (evt) => {
-                    if(evt) {
-                       dispatch(onMessageWebSocket(JSON.parse(evt.data)));
-                    }
-                   }
-     
-                    ws.onclose = (e) => {
-                        dispatch(closeWebsocket());
-                        console.log(`ws closed`);
-                    }
+                   connectWs(response.data, dispatch);
                }
            ).catch(
                error => {
@@ -91,3 +57,50 @@ export function requestMachineList(){
            )
      }
 }
+
+function connectWs(data, dispatch){
+    const ws = new WebSocket('wss://localhost:44395/dt/wscall');
+    const machineList = data;
+    const macUuids = [];
+    const collectUuid = (arr) => {
+        let macUuids = [];
+        for(let i=0; i< arr.length; i++){
+            if(arr[i].Machines && Array.isArray(arr[i].Machines))
+            {
+                macUuids = macUuids.concat(collectUuid(arr[i].Machines))
+            }
+            else {
+                macUuids.push(arr[i].MachineUuid)
+            }
+        }
+        return macUuids;
+    }
+    
+    ws.onopen = () => {
+        // send machine uuids, otherwise no data back in message
+        // relative to backend 
+        macUuids = collectUuid(machineList);
+
+        if(macUuids.length > 0)
+        {
+            ws.send(JSON.stringify(macUuids));
+            dispatch(openWebsocket());
+            console.log(`ws connected`);
+        }else{
+            dispatch(closeWebsocket());
+            console.log(`Ws didn't received macUuids.`)
+        }
+    }
+
+    ws.onmessage = (evt) => {
+        if(evt) {
+            dispatch(onMessageWebSocket(JSON.parse(evt.data)));
+        }
+    }
+
+    ws.onclose = (e) => {
+        dispatch(closeWebsocket());
+        console.log(`ws closed`);
+    }
+}
+

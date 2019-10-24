@@ -28,9 +28,12 @@ class App extends React.Component{
 
   render() {
     // const machines = getDummyMachines();
-    const { machineList, wsCall } = this.props;
+    const { machineList, error, wsCall } = this.props;
+    let errorMsg = error? error.stack : `request error`;
     if(!this.shouldComponentRender()){
-      return null;
+      return (
+          null
+      );
     }
 
     return (
@@ -54,12 +57,14 @@ const mapStateToProps = (state) => {
   }
 }
 
-const mapDispatchToProps = (dispatch) => ({
-  actions: bindActionCreators({
-    requestMachineList: requestMachineList,
-    // connectWsCall: connectWsCall
-  }, dispatch)
-})
+const mapDispatchToProps = (dispatch) => {
+  return {
+    actions: bindActionCreators({
+      requestMachineList: requestMachineList,
+      //other actions
+    }, dispatch)
+  }
+}
 
 App = connect(mapStateToProps, mapDispatchToProps)(App);
 
