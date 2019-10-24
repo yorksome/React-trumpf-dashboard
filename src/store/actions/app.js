@@ -61,7 +61,7 @@ export function requestMachineList(){
 function connectWs(data, dispatch){
     const ws = new WebSocket('wss://localhost:44395/dt/wscall');
     const machineList = data;
-    const macUuids = [];
+    let macUuids = [];
     const collectUuid = (arr) => {
         let macUuids = [];
         for(let i=0; i< arr.length; i++){
