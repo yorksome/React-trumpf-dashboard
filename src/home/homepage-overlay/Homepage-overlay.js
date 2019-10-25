@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import './Homepage-overlay.scss';
 
 const HomepageOverlay = () => {
@@ -15,7 +16,7 @@ const HomepageOverlay = () => {
                 <li className="tabs">
                     <div className="nav-site">
                         <div className="nav-menu">
-                           <a href="/">Machine Overview</a> 
+                           <Link to="/">Machine Overview</Link>
                         </div>
                     </div>
                 </li>

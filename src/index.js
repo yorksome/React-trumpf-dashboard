@@ -1,17 +1,25 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import store from './store/store';
 import './index.css';
 import App from './App';
+import MachineDetail from './home/machine-detail/Machine-detail';
+import PageNotFound from './notFound';
 import * as serviceWorker from './serviceWorker';
 import HomepageOverlay from './home/homepage-overlay/Homepage-overlay';
 
-
-ReactDOM.render(<HomepageOverlay />,document.getElementById('overlay'));
 ReactDOM.render(
     <Provider store={store}>
-        <App />
+        <Router>
+          <HomepageOverlay />
+          <Switch>
+            <Route path="/" component= {App} />
+            {/* <Route path="/:id?" component= {MachineDetail} /> */}
+            <Route component= {PageNotFound} />
+          </Switch>
+        </Router>
     </Provider>,
     document.getElementById('root'));
 
