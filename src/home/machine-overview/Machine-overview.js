@@ -13,7 +13,7 @@ class MachineOverview extends React.Component{
             let group = (mg) => {
                 if(mg.Machines && mg.Machines.length>0)
                    return (
-                       <div className="group">
+                       <div className="group" key={mg.GroupName+mg.GroupOrder}>
                         {
                             mg.Machines.map((item,index) => {
                                 return <SingleMachine info={item} ws={this.props.wsCall[index]} key={item.MachineUuid} />
