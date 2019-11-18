@@ -4,24 +4,27 @@ import SingleMachine from './single-machine-dashboard/Single-machine-dashboard';
 
 
 class MachineOverview extends React.Component{
-    // constructor(props){
-    //     super(props);
-    // }
-
     render(){
         if(this.props.machineList && this.props.machineList.length>0) {
+            // Parameter:
+            // @mg: machineGroup
             let group = (mg) => {
                 if(mg.Machines && mg.Machines.length>0)
                    return (
-                       <div className="group" key={mg.GroupName+mg.GroupOrder}>
-                        {
-                            mg.Machines.map((item,index) => {
-                                return <SingleMachine info={item} ws={this.props.wsCall[index]} key={item.MachineUuid} />
-                            })
-                        }
+                       <div key={mg.GroupName+mg.GroupOrder}>
+                            <div className="group_header" >
+                                 <h3>{mg.GroupName}</h3>
+                                 <hr />
+                            </div>
+                            <div className="group">
+                                {
+                                    mg.Machines.map((item,index) => {
+                                        return <SingleMachine info={item} ws={this.props.wsCall[index]} key={item.MachineUuid} />
+                                    })
+                                }
+                            </div>
                        </div>
-                   ); 
-                   
+                   )
             }
 
             return (

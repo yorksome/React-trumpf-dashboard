@@ -1,6 +1,16 @@
 @import '../../../public/styles/variables/all';
 
 .machine-overview{
+    .group_header{
+        h3{
+            margin: 20px 10px;
+            text-align: center;
+        }
+        hr{
+            margin: 0 1.5%;
+        }
+    }
+
     .group{
         display: flex;
         flex-flow: row wrap;  //switch line automatically
@@ -12,13 +22,17 @@
     }
 }
 
+
+
 // for PC web browser
 @media screen and (min-width: $pc-web-small-min){
     .machine-overview{
         .group{
             > .machine-container{
-                flex-basis: 22%;
-                margin: 40px 1.5%;
+                flex-basis: auto;
+                width: 14%;
+                margin-top: 10px;
+                margin-left: 2%;
              }
         }
     }

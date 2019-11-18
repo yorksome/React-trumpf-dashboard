@@ -2,6 +2,7 @@
 
 .machine-container{
     width: 100%;
+
     .status-bar{
         display:block;
         height: 25px;
@@ -10,25 +11,27 @@
         padding: 0;
     }
 
-    .running{
+    .Running{
         background-color: $color-running;
     }
 
-    .inpause{
+    .InPause{
         background-color: $color-inPause;
     }
 
-    .offline{
+    .Offline{
         background-color: $color-offline;
     }
 
-    .error{
+    .Error{
         background-color: $color-error;
     }
     
-    .status-bar:hover{
-        cursor: pointer;
-    }
+}
+
+.machine-container:hover{
+    cursor: pointer;
+    outline: 5px solid lightsteelblue;    
 }
 
 .machine_info{
@@ -88,15 +91,29 @@
     margin-top: 1%;
 
     >.program_status_icon{
-        width:12%;
+        width:8%;
+        
+        img.running{
+            width: 80%;
+            height: 100%;
+            padding-right: 2px;
+            object-fit: contain;
+        }
+        
+        img.pause{
+            width: 95%;
+            height: 100%;
+            padding-right: 5px;
+            object-fit: contain;
+        }       
     }
 
-    >.program_status_icon img{
-        width: 100%;
-        height: 100%;
-        padding-right: 5px;
-        object-fit: contain;
-    }
+    // >.program_status_icon img{
+    //     width: 100%;
+    //     height: 100%;
+    //     padding-right: 5px;
+    //     object-fit: contain;
+    // }
 
     >.program_name{
         width: 70%;

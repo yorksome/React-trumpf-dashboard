@@ -15,8 +15,8 @@ ReactDOM.render(
         <Router>
           <HomepageOverlay />
           <Switch>
-            <Route path="/" component= {App} />
-            {/* <Route path="/:id?" component= {MachineDetail} /> */}
+            <Route exact path="/" component= {App} />
+            <Route exact path="/:id?" component= {MachineDetail} />
             <Route component= {PageNotFound} />
           </Switch>
         </Router>

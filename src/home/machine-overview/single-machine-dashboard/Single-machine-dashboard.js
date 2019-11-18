@@ -36,20 +36,24 @@ class SingleMachine extends React.Component{
       }
     }
 
+    goToDetail = () =>{
+
+    }
+
     render(){
         const machineStatus = this.props.ws.Status;
         const getStatusClass = () => {
             switch(machineStatus){
-                case 0: return `status-bar inpause`;
-                case 1: return `status-bar running`;
-                case 2: return `status-bar offline`;
-                case 3: return `status-bar error`;
+                case 0: return `status-bar InPause`;
+                case 1: return `status-bar Running`;
+                case 2: return `status-bar Offline`;
+                case 3: return `status-bar Error`;
                 default: return `status-bar`;
             }
         }
 
         return (
-            <div className="machine-container">
+            <div className="machine-container" onClick={this.goToDetail()}>
                 <div className={getStatusClass()}>
                 </div>
                 <div className="machine_info">
@@ -65,7 +69,7 @@ class SingleMachine extends React.Component{
                 </div>
                 <div className="running-status">
                     <div className="program_status_icon">
-                        <img src={this.props.ws.Status === 1? "/images/icon.JPG" : "/images/icon2.JPG"} alt="" />
+                        <img className={this.props.ws.Status === 1? "running" : "pause"} src={this.props.ws.Status === 1? "/images/icon.JPG" : "/images/icon2.JPG"} alt="" />
                         {/* <img src="/images/icon.JPG" alt="" /> */}
                     </div>
                     <div className="program_name">
