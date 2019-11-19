@@ -1,13 +1,17 @@
-import { UPDATE_SINGLE_MACHINE } from '../action-types';
+import { REQUEST_MACHINEDETAIL } from '../action-types';
 
-const initialState = {};
+const initialState = {
+    success: false
+};
 
-const newState = {};
 
-function singleMachine(state=initialState, action){
+function singleMachine(state = initialState, action){
     switch(action.type){
-        case UPDATE_SINGLE_MACHINE:
-            return Object.assign({}, state, newState);
+        case REQUEST_MACHINEDETAIL:
+            return {
+                ...state,
+                success: true
+            }
         default:
             return state;
     }

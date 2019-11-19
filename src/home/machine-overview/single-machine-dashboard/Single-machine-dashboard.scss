@@ -2,6 +2,7 @@
 
 .machine-container{
     width: 100%;
+    padding: 10px;
 
     .status-bar{
         display:block;
@@ -88,7 +89,7 @@
     justify-content: flex-start;
     height: 45px;
     width: 100%;
-    margin-top: 1%;
+    // margin-top: 1%;
 
     >.program_status_icon{
         width:8%;

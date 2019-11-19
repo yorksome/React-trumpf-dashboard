@@ -1,7 +1,6 @@
 import React from 'react';
 import Home from './home/Home';
 import './App.css';
-import getDummyMachines from './services/dummy.data';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { requestMachineList } from './store/actions/app';
@@ -28,8 +27,7 @@ class App extends React.Component{
 
   render() {
     // const machines = getDummyMachines();
-    const { machineList, error, wsCall } = this.props;
-    let errorMsg = error? error.stack : `request error`;
+    const { machineList, wsCall } = this.props;
     if(!this.shouldComponentRender()){
       return (
           null

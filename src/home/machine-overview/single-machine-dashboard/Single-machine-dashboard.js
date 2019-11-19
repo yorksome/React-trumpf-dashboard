@@ -1,7 +1,8 @@
 import React from 'react';
 import './Single-machine-dashboard.scss';
+import history from '../../../history';
 
-class SingleMachine extends React.Component{
+class SingleMachineDashboard extends React.Component{
     // constructor(props){
     //     super(props);
 
@@ -36,9 +37,10 @@ class SingleMachine extends React.Component{
       }
     }
 
-    goToDetail = () =>{
-
-    }
+    // goToDetail = () =>{
+    //    let id = this.props.info.Id;
+    //    history.push(`/${id}`);
+    // }
 
     render(){
         const machineStatus = this.props.ws.Status;
@@ -53,7 +55,7 @@ class SingleMachine extends React.Component{
         }
 
         return (
-            <div className="machine-container" onClick={this.goToDetail()}>
+            <div className="machine-container" onClick={()=>{ history.replace(this.props.info.Id) }}>
                 <div className={getStatusClass()}>
                 </div>
                 <div className="machine_info">
@@ -83,5 +85,7 @@ class SingleMachine extends React.Component{
         )
     }
 }
+
+const SingleMachine = SingleMachineDashboard;
 
 export default SingleMachine;
