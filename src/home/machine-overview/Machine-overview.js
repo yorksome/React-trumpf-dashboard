@@ -5,7 +5,8 @@ import SingleMachine from './single-machine-dashboard/Single-machine-dashboard';
 
 class MachineOverview extends React.Component{
     render(){
-        if(this.props.machineList && this.props.machineList.length>0) {
+        const { machineList, wsCall } = this.props;
+        if(machineList && machineList.length>0 && wsCall && wsCall.length >0) {
             // Parameter:
             // @mg: machineGroup
             let group = (mg) => {
@@ -19,7 +20,7 @@ class MachineOverview extends React.Component{
                             <div className="group">
                                 {
                                     mg.Machines.map((item,index) => {
-                                        return <SingleMachine info={item} ws={this.props.wsCall[index]} key={item.MachineUuid} />
+                                        return <SingleMachine info={item} ws={wsCall[index]} key={item.MachineUuid} />
                                     })
                                 }
                             </div>
@@ -30,7 +31,7 @@ class MachineOverview extends React.Component{
             return (
                 <div className="machine-overview">
                     {
-                        this.props.machineList.map((item) => {
+                        machineList.map((item) => {
                             return group(item);
                         })
                     }
@@ -38,7 +39,7 @@ class MachineOverview extends React.Component{
             );
         }
         else {
-            // console.log(`No received machines`);
+            console.log(`Websocket pipeline has not been established.`);
             return null;
         }
         

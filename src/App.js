@@ -1,5 +1,5 @@
 import React from 'react';
-import Home from './home/Home';
+import MachineOverview from './home/machine-overview/Machine-overview';
 import './App.css';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
@@ -20,7 +20,7 @@ class App extends React.Component{
 
   shouldComponentRender() {
     const {success, wsCall} = this.props;
-    let shouldRender = success && wsCall.open;
+    let shouldRender = success && wsCall && wsCall.open;
 
     return shouldRender? true: false;
   }
@@ -28,17 +28,11 @@ class App extends React.Component{
   render() {
     // const machines = getDummyMachines();
     const { machineList, wsCall } = this.props;
-    if(!this.shouldComponentRender()){
-      return (
-          null
-      );
-    }
-
     return (
-        <div className="App">
-           <Home machineList={machineList} wsCall={wsCall.message}/>
-        </div>
-    );
+      <div className="App">
+        <MachineOverview machineList={machineList} wsCall={wsCall.message} />
+      </div>
+    )
   }
 }
 

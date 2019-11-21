@@ -37,15 +37,10 @@ class SingleMachineDashboard extends React.Component{
       }
     }
 
-    // goToDetail = () =>{
-    //    let id = this.props.info.Id;
-    //    history.push(`/${id}`);
-    // }
-
     render(){
-        const machineStatus = this.props.ws.Status;
+        const { info, ws, history } = this.props;
         const getStatusClass = () => {
-            switch(machineStatus){
+            switch(ws.Status){
                 case 0: return `status-bar InPause`;
                 case 1: return `status-bar Running`;
                 case 2: return `status-bar Offline`;
@@ -55,27 +50,25 @@ class SingleMachineDashboard extends React.Component{
         }
 
         return (
-            <div className="machine-container" onClick={()=>{ this.props.history.push(this.props.info.Id) }}>
+            <div className="machine-container" onClick={()=>{ history.push(info.Id) }}>
                 <div className={getStatusClass()} />
                 <div className="machine_info">
                     <div className="machine_name">
-                        <span>{this.props.info.Name}</span>
+                        <span>{info.Name}</span>
                     </div>
                     <div className="machine_number">
-                        <span>{this.props.info.Id}</span>
+                        <span>{info.Id}</span>
                     </div>
                 </div>
                 <div className="machine_img">
-                    <img src={this.getImageUri(this.props.info.Id)} alt="" />
+                    <img src={this.getImageUri(info.Id)} alt="" />
                 </div>
                 <div className="running-status">
                     <div className="program_status_icon">
-                        <img className={this.props.ws.Status === 1? "running" : "pause"} src={this.props.ws.Status === 1? "/images/icon.JPG" : "/images/icon2.JPG"} alt="" />
-                        {/* <img src="/images/icon.JPG" alt="" /> */}
+                        <img className={ws.Status === 1? "running" : "pause"} src={ws.Status === 1? "/images/icon.JPG" : "/images/icon2.JPG"} alt="" />
                     </div>
                     <div className="program_name">
-                        <span>{this.props.ws.ProgramName? this.props.ws.ProgramName : "Prog.No.: ----"}</span>
-                        {/* <span>Prog.No.: ----</span> */}
+                        <span>{ws.ProgramName? ws.ProgramName : "Prog.No.: ----"}</span>
                     </div>
                     <div className="program_time">
                     </div>
