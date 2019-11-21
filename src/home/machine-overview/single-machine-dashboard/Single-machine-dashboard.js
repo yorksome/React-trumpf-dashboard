@@ -1,6 +1,6 @@
 import React from 'react';
 import './Single-machine-dashboard.scss';
-import history from '../../../history';
+import { withRouter } from "react-router";
 
 class SingleMachineDashboard extends React.Component{
     // constructor(props){
@@ -55,9 +55,8 @@ class SingleMachineDashboard extends React.Component{
         }
 
         return (
-            <div className="machine-container" onClick={()=>{ history.replace(this.props.info.Id) }}>
-                <div className={getStatusClass()}>
-                </div>
+            <div className="machine-container" onClick={()=>{ this.props.history.push(this.props.info.Id) }}>
+                <div className={getStatusClass()} />
                 <div className="machine_info">
                     <div className="machine_name">
                         <span>{this.props.info.Name}</span>
@@ -86,6 +85,6 @@ class SingleMachineDashboard extends React.Component{
     }
 }
 
-const SingleMachine = SingleMachineDashboard;
+const SingleMachine = withRouter(SingleMachineDashboard);
 
 export default SingleMachine;
