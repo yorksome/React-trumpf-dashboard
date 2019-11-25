@@ -40,7 +40,7 @@ class MachineOverview extends React.Component{
         }
         else {
             console.log(`Websocket pipeline has not been established.`);
-            return null;
+            return <div className="machine-overview"></div>;
         }
         
     }

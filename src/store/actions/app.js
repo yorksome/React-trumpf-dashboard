@@ -49,6 +49,8 @@ export function requestMachineList(){
                response => {
                    console.log(response.request.status? response.request.status : 'response unknown');
                    dispatch(requestMachineListSuccess(response.data));
+                   
+                   //connect websocket when machines arrived
                    ws_connect(response.data, dispatch);
                }
            ).catch(

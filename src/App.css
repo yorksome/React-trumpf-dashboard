@@ -1,3 +1,5 @@
+@import '~antd/dist/antd.css';
+
 html{
   font-family: 'Frutiger-Light', sans-serif;
 }

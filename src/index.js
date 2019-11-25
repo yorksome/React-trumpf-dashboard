@@ -5,7 +5,6 @@ import { Provider } from 'react-redux';
 import store from './store/store';
 import './index.css';
 import App from './App';
-import MachineDetail from './home/machine-detail/Machine-detail';
 import PageNotFound from './notFound';
 import * as serviceWorker from './serviceWorker';
 import HomepageOverlay from './home/homepage-overlay/Homepage-overlay';
@@ -16,7 +15,7 @@ ReactDOM.render(
           <HomepageOverlay />
           <Switch>
             <Route exact path="/" component= {App} />
-            <Route exact path="/:id?" component= {MachineDetail} />
+            <Route exact path="/:id" component= {App} />
             <Route component= {PageNotFound} />
           </Switch>
         </HashRouter>

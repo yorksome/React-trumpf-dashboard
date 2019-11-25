@@ -1,5 +1,6 @@
 import React from 'react';
 import MachineOverview from './home/machine-overview/Machine-overview';
+import MachineDetail from './home/machine-detail/Machine-detail';
 import './App.css';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
@@ -28,11 +29,23 @@ class App extends React.Component{
   render() {
     // const machines = getDummyMachines();
     const { machineList, wsCall } = this.props;
-    return (
-      <div className="App">
-        <MachineOverview machineList={machineList} wsCall={wsCall.message} />
-      </div>
-    )
+    const { match: {params} } = this.props;
+    if(!params.id) {
+      return (
+        <>
+          <MachineOverview machineList={machineList} wsCall={wsCall.message} />
+        </>
+      )
+    } else {
+      return (
+        <>
+          <MachineDetail machineList={machineList} wsCall={wsCall.message} />
+        </>
+      )
+    }
+    
+    
+    // return null;
   }
 }
 
